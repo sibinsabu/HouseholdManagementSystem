@@ -1,0 +1,22 @@
+﻿<Window x:Class="HouseholdManagementSystem.Views.TechnicianView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:HouseholdManagementSystem.ViewModels"
+        Title="Technicians" Height="400" Width="600">
+
+    <Window.DataContext>
+        <local:TechnicianViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <ListView ItemsSource="{Binding Technicians}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Contact" DisplayMemberBinding="{Binding ContactNum}"/>
+                    <GridViewColumn Header="Assigned Area" DisplayMemberBinding="{Binding AssignedArea}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

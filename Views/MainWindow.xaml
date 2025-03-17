@@ -1,0 +1,91 @@
+﻿<Window x:Class="HouseholdManagementSystem.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Household Management System" Height="500" Width="800"
+        Background="#F4F4F4">
+
+    <Grid>
+        <!-- ✅ Sidebar Menu -->
+        <StackPanel Width="200" Background="#333" VerticalAlignment="Stretch">
+            <TextBlock Text="Menu" Foreground="White" FontSize="18" FontWeight="Bold" Margin="10"/>
+
+            <Button Content="🏠 Households" Command="{Binding LoadHouseholdsCommand}" Style="{StaticResource SidebarButton}"/>
+            <Button Content="👷 Technicians" Command="{Binding LoadTechniciansCommand}" Style="{StaticResource SidebarButton}"/>
+            <Button Content="📦 Inventory" Command="{Binding LoadInventoryCommand}" Style="{StaticResource SidebarButton}"/>
+            <Button Content="🔧 Service Records" Command="{Binding LoadServiceRecordsCommand}" Style="{StaticResource SidebarButton}"/>
+            <Button Content="🚪 Logout" Click="LogoutButton_Click" Background="Red" Foreground="White" Margin="10"/>
+            
+        </StackPanel>
+
+        <!-- ✅ Content Panel -->
+        <Grid Margin="210,10,10,10">
+            <TabControl>
+                <!-- Households Tab -->
+                <TabItem Header="🏠 Households">
+                    <StackPanel>
+                        <Button Content="➕ Add Household" Command="{Binding AddHouseholdCommand}" Width="180" Margin="10"/>
+                        <ListView ItemsSource="{Binding Households}" Height="300">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Owner Name" DisplayMemberBinding="{Binding OwnerName}" Width="150"/>
+                                    <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="200"/>
+                                    <GridViewColumn Header="Contact" DisplayMemberBinding="{Binding ContactNum}" Width="100"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Technicians Tab -->
+                <TabItem Header="👷 Technicians">
+                    <StackPanel>
+                        <Button Content="➕ Add Technician" Command="{Binding AddTechnicianCommand}" Width="180" Margin="10"/>
+                        <ListView ItemsSource="{Binding Technicians}" Height="300">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                                    <GridViewColumn Header="Contact" DisplayMemberBinding="{Binding ContactNum}" Width="100"/>
+                                    <GridViewColumn Header="Assigned Area" DisplayMemberBinding="{Binding AssignedArea}" Width="150"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Inventory Tab -->
+                <TabItem Header="📦 Inventory">
+                    <StackPanel>
+                        <Button Content="📥 Restock Item" Command="{Binding RestockInventoryCommand}" Width="180" Margin="10"/>
+                        <ListView ItemsSource="{Binding Inventory}" Height="300">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Item Type" DisplayMemberBinding="{Binding ItemType}" Width="150"/>
+                                    <GridViewColumn Header="Total Quantity" DisplayMemberBinding="{Binding TotalQuantity}" Width="100"/>
+                                    <GridViewColumn Header="Used Quantity" DisplayMemberBinding="{Binding UsedQuantity}" Width="100"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </TabItem>
+
+                <!-- Service Records Tab -->
+                <TabItem Header="🔧 Service Records">
+                    <StackPanel>
+                        <Button Content="📑 Log Service" Command="{Binding LogServiceCommand}" Width="180" Margin="10"/>
+                        <ListView ItemsSource="{Binding ServiceRecords}" Height="300">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Household ID" DisplayMemberBinding="{Binding HouseholdID}" Width="100"/>
+                                    <GridViewColumn Header="Technician ID" DisplayMemberBinding="{Binding TechnicianID}" Width="100"/>
+                                    <GridViewColumn Header="Problem" DisplayMemberBinding="{Binding Problem}" Width="200"/>
+                                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status}" Width="100"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>

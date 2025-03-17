@@ -1,0 +1,24 @@
+﻿<Window x:Class="HouseholdManagementSystem.Views.ServiceRecordView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:HouseholdManagementSystem.ViewModels"
+        Title="Service Records" Height="400" Width="600">
+
+    <Window.DataContext>
+        <local:ServiceRecordViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <ListView ItemsSource="{Binding ServiceRecords}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Report ID" DisplayMemberBinding="{Binding ReportID}"/>
+                    <GridViewColumn Header="Technician ID" DisplayMemberBinding="{Binding TechnicianID}"/>
+                    <GridViewColumn Header="Household ID" DisplayMemberBinding="{Binding HouseholdID}"/>
+                    <GridViewColumn Header="Items Used" DisplayMemberBinding="{Binding ItemsUsed}"/>
+                    <GridViewColumn Header="Service Date" DisplayMemberBinding="{Binding ServiceDate}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
